@@ -52,7 +52,7 @@ router.patch('/favorites/add/multiple/:id', async (req,res) => {
 
     const favoritesArray = favorites.split(',');
     try {
-        //add value to array at all times multiple using an array and the $each operator
+        //add value to array at all times multiple using an array and the $each operator adds multiple values as an array.
         const updatedUser = await User.findByIdAndUpdate(req.params.id, {$push:{ favorites:{$each:favoritesArray}}}, {new:true})
 
         if(!updatedUser) return res.status(404).json({message:'User not found'})
@@ -126,8 +126,6 @@ router.patch('/update/:id', async (req,res) => {
 
 router.patch('/update/removefield/:id', async (req,res) => {
 
-    const {username} = req.body;
-
     try {
         //$unset removes the field from the document
         const updatedUser = await User.findByIdAndUpdate(req.params.id, {$unset:{ username:""}}, {new:true})
@@ -138,7 +136,6 @@ router.patch('/update/removefield/:id', async (req,res) => {
 
 
     } catch (error) {
-        console.log("the error is", error)
         return res.status(400).json({message:'Error happened', error})
     }
 });

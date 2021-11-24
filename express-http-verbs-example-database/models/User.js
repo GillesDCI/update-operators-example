@@ -8,10 +8,7 @@ const userSchema = new Schema({
     username:{type:String, required:true},
     address:{type:String, required:false},
     city:{type:String, required:false},
-    favorites:[{type:String, required:false, enum:{
-        values:['GARDEN', 'COOKING', 'ELECTRONICS','MULTIMEDIA'],
-        message:'{VALUE} is not supported'
-    }}]
+    favorites:[{type:String, required:false}]
 })
 
 
